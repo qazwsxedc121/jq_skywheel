@@ -5,7 +5,44 @@
         var lilist = this.children(),
             lilen = lilist.length,
             i,
-            k;
+            k,
+            that = this,
+            adjust = function adjust (index) {
+                var i = 0,
+                    k = 0,
+                    j = 1;
+                for (i = 0; i < lilen; i += 1) {
+                    $(lilist[i]).removeClass();
+                }
+                $(lilist[index]).addClass("center");
+                for (i = index + 1; i < 3 + index; i += 1) {
+                    k = i >= lilen ? i - lilen : i;
+                    $(lilist[k]).removeClass();
+                    $(lilist[k]).addClass("close" + j);
+                    j += 1;
+                }
+                j = 1;
+                for (i = index - 1; i > index - 3; i -= 1) {
+                    k = i < 0 ? i + lilen : i;
+                    $(lilist[k]).removeClass();
+                    $(lilist[k]).addClass("nclose" + j);
+                    j += 1;
+                }
+            },
+            keyhandler = function keyhandler (event) {
+                var keyCode = event.keyCode,
+                    tomove = that.chosen;
+                if (keyCode == 38) {
+                    tomove = tomove <= 0 ? lilen - 1: tomove - 1;
+                    adjust(tomove);
+                    that.chosen = tomove;
+                }else if (keyCode == 40) {
+                    tomove = tomove >= (lilen - 1) ? 0: tomove + 1;
+                    adjust(tomove);
+                    that.chosen = tomove;
+                }
+            };
+        $(document).keypress(keyhandler);
         this.chosen = lilen - 1;
         lilist.each(function (index, el) {
             var helperin = function () {
@@ -13,35 +50,15 @@
                 helperout = function () {
                 },
                 helperclick = function () {
+                    this.chosen = index;
                     if ($(el).hasClass("center")) {
                         for (i = 0; i < lilen; i += 1) {
                             $(lilist[i]).removeClass();
                         }
                         $(el).addClass("chosen");
-                        this.chosen = index;
                         return;
                     }
-                    jQuery(el).removeClass();
-                    $(el).addClass("center");
-                    var j = 1;
-                    for (i = 0; i < lilen; i += 1) {
-                        if (i !== index) {
-                            $(lilist[i]).removeClass();
-                        }
-                    }
-                    for (i = index + 1; i < 3 + index; i += 1) {
-                        k = i >= lilen ? i - lilen : i;
-                        $(lilist[k]).removeClass();
-                        $(lilist[k]).addClass("close" + j);
-                        j += 1;
-                    }
-                    j = 1;
-                    for (i = index - 1; i > index - 3; i -= 1) {
-                        k = i < 0 ? i + lilen : i;
-                        $(lilist[k]).removeClass();
-                        $(lilist[k]).addClass("nclose" + j);
-                        j += 1;
-                    }
+                    adjust(index);
                 };
             $(el).on("click", helperclick);
             $(el).on("mouseenter", helperin);
