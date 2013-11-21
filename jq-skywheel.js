@@ -8,6 +8,7 @@
             return style.sheet;
         })();
         sheet.insertRule(".jq_skywheel li{height:"+opt.sizey+";width:"+opt.sizex+";line-height:"+opt.sizey+";}",sheet.cssRules.length);
+        sheet.insertRule(".jq_skywheel li .inner{height:"+opt.sizey+";width:"+opt.sizex+";line-height:"+opt.sizey+";}",sheet.cssRules.length);
         this.addClass("jq_skywheel");
         this.children().each(function (index, el) {
             $(el).contents().wrap("<span class='inner'></span>");

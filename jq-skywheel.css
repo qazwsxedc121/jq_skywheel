@@ -12,6 +12,7 @@
     -moz-user-select: none;
     -webkit-user-select: none;
     user-select: none;
+	overflow:hidden;
 }
 
 .jq_skywheel .mask1:before{
