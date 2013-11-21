@@ -27,12 +27,14 @@
                 for (i = index + 1; i < 3 + index; i += 1) {
                     k = i >= lilen ? i - lilen : i;
                     $(lilist[k]).addClass("effect"+opt.effect+"_" + j);
+                    $(lilist[k]).addClass("mask" + j);
                     j += 1;
                 }
                 j = 1;
                 for (i = index - 1; i > index - 3; i -= 1) {
                     k = i < 0 ? i + lilen : i;
                     $(lilist[k]).addClass("effect"+opt.effect+"_n" + j);
+                    $(lilist[k]).addClass("mask" + j);
                     j += 1;
                 }
             },
