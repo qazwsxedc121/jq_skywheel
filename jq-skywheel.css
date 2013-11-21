@@ -9,45 +9,74 @@
 .jq_skywheel li .inner{
     display: inline-block;
     vertical-align: middle;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
-.jq_skywheel .nclose2{
-        z-index: 0;
+.jq_skywheel .effect1_n2{
+    z-index: 0;
     background-color: #BBB;
     -webkit-transform: scale(0.8) translate(0px,-100%);
     -moz-transform: scale(0.8) translate(0px,-100%);
-    
+    transform: scale(0.8) translate(0px,-100%);
 }
-.jq_skywheel .nclose1{
-        z-index: 1;
+.jq_skywheel .effect1_n1{
+    z-index: 1;
     background-color:#999;
     -moz-transform: scale(1.0) translate(0px,-50%);
     -webkit-transform: scale(1.0) translate(0px,-50%);
-    
-    
+    transform: scale(1.0) translate(0px,-50%);
 }
-.jq_skywheel .close1{
-        z-index: 1;
+.jq_skywheel .effect1_1{
+    z-index: 1;
     background-color:#999;
     -moz-transform: scale(1.0) translate(0px,50%);
     -webkit-transform: scale(1.0) translate(0px,50%);
-    
+    transform: scale(1.0) translate(0px,50%);
 }
-.jq_skywheel .close2{
-        z-index: 0;
+.jq_skywheel .effect1_2{
+    z-index: 0;
     background-color:#BBB;
     -moz-transform: scale(0.8) translate(0px,100%);
     -webkit-transform: scale(0.8) translate(0px,100%);
-    
+    transform: scale(0.8) translate(0px,100%);
+}
+.jq_skywheel .effect2_n2{
+    z-index: 0;
+    background-color: #BBB;
+    -webkit-transform: scale(0.8) translate(-100%,0px);
+    -moz-transform: scale(0.8) translate(-100%,0px);
+    transform: scale(0.8) translate(-100%,0px);
+}
+.jq_skywheel .effect2_n1{
+    z-index: 1;
+    background-color:#999;
+    -moz-transform: scale(1.0) translate(-50%,0px);
+    -webkit-transform: scale(1.0) translate(-50%,0px);
+    transform: scale(1.0) translate(-50%,0px);
+}
+.jq_skywheel .effect2_1{
+    z-index: 1;
+    background-color:#999;
+    -moz-transform: scale(1.0) translate(50%,0px);
+    -webkit-transform: scale(1.0) translate(50%,0px);
+    transform: scale(1.0) translate(50%,0px);
+}
+.jq_skywheel .effect2_2{
+    z-index: 0;
+    background-color:#BBB;
+    -moz-transform: scale(0.8) translate(100%,0px);
+    -webkit-transform: scale(0.8) translate(100%,0px);
+    transform: scale(0.8) translate(100%,0px);
 }
 .jq_skywheel .center{
-        z-index: 2;
-        background-color:#777;
-        -webkit-transform:scale(1.2) translate(0px,0px);
-        -moz-transform: scale(1.2) translate(0px,0px);
-        
-        
-    }
+    z-index: 2;
+    background-color:#777;
+    -webkit-transform:scale(1.2) translate(0px,0px);
+    -moz-transform: scale(1.2) translate(0px,0px);
+    transform: scale(1.2) translate(0px,0px);
+}
 .jq_skywheel .chosen{
-        z-index: 1;
-    }
+	z-index: 1;
+}

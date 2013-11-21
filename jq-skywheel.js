@@ -26,15 +26,13 @@
                 $(lilist[index]).addClass("center");
                 for (i = index + 1; i < 3 + index; i += 1) {
                     k = i >= lilen ? i - lilen : i;
-                    $(lilist[k]).removeClass();
-                    $(lilist[k]).addClass("close" + j);
+                    $(lilist[k]).addClass("effect"+opt.effect+"_" + j);
                     j += 1;
                 }
                 j = 1;
                 for (i = index - 1; i > index - 3; i -= 1) {
                     k = i < 0 ? i + lilen : i;
-                    $(lilist[k]).removeClass();
-                    $(lilist[k]).addClass("nclose" + j);
+                    $(lilist[k]).addClass("effect"+opt.effect+"_n" + j);
                     j += 1;
                 }
             },
@@ -78,5 +76,6 @@
         type: "normal",
         sizex: "100px",
         sizey: "40px",
+        effect: 1
     };
 }(jQuery));
