@@ -7,8 +7,8 @@
             document.head.appendChild(style);
             return style.sheet;
         })();
-        sheet.insertRule(".jq_skywheel li{height:"+opt.sizey+";width:"+opt.sizex+";line-height:"+opt.sizey+";}",sheet.cssRules.length);
-        sheet.insertRule(".jq_skywheel li .inner{height:"+opt.sizey+";width:"+opt.sizex+";line-height:"+opt.sizey+";}",sheet.cssRules.length);
+        sheet.insertRule(".jq_skywheel li{height:"+opt.height+";width:"+opt.width+";line-height:"+opt.height+";}",sheet.cssRules.length);
+        sheet.insertRule(".jq_skywheel li .inner{height:"+opt.height+";width:"+opt.width+";line-height:"+opt.height+";}",sheet.cssRules.length);
         this.addClass("jq_skywheel");
         this.children().each(function (index, el) {
             $(el).contents().wrap("<span class='inner'></span>");
@@ -38,21 +38,32 @@
                     $(lilist[k]).addClass("mask" + j);
                     j += 1;
                 }
-            },
-            keyhandler = function keyhandler(event) {
-                var keyCode = event.keyCode,
-                    tomove = that.chosen;
-                if (keyCode === 38) {
-                    tomove = tomove <= 0 ? lilen - 1 : tomove - 1;
-                    adjust(tomove);
-                    that.chosen = tomove;
-                } else if (keyCode === 40) {
-                    tomove = tomove >= (lilen - 1) ? 0 : tomove + 1;
-                    adjust(tomove);
-                    that.chosen = tomove;
-                }
             };
-        $(document).keypress(keyhandler);
+        var keyhandler = function keyhandler(event) {
+            var keyCode = event.keyCode,
+                tomove = that.chosen,
+                keyCodeNext = 40,
+                keyCodePrev = 38;
+            if(opt.keyOption == "updown"){
+                keyCodeNext = 40;
+                keyCodePrev = 38;
+            }else if(opt.keyOption == "leftright"){
+                keyCodeNext = 39;
+                keyCodePrev = 37;
+            }
+            if (keyCode === keyCodePrev) {
+                tomove = tomove <= 0 ? lilen - 1 : tomove - 1;
+                adjust(tomove);
+                that.chosen = tomove;
+            } else if (keyCode === keyCodeNext) {
+                tomove = tomove >= (lilen - 1) ? 0 : tomove + 1;
+                adjust(tomove);
+                that.chosen = tomove;
+            }
+        };
+        if(opt.keyOption != "nokey"){
+            $(document).keypress(keyhandler);
+        }
         this.chosen = lilen - 1;
         lilist.each(function (index, el) {
             var helperin = function () {
@@ -60,7 +71,7 @@
                 helperout = function () {
                 },
                 helperclick = function () {
-                    this.chosen = index;
+                    that.chosen = index;
                     if ($(el).hasClass("center")) {
                         for (i = 0; i < lilen; i += 1) {
                             $(lilist[i]).removeClass();
@@ -77,8 +88,9 @@
     };
     jQuery.fn.skywheel.defaults = {
         type: "normal",
-        sizex: "100px",
-        sizey: "40px",
-        effect: 1
+        width: "100px",
+        height: "40px",
+        effect: 1,
+        keyOption: "leftright"
     };
 }(jQuery));
